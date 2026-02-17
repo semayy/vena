@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prestij Tütün — Sürdürülebilirlik Raporu 2024–2025 (Annual Report Tasarımı)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0F1B2D;
+      --text:#111827;
+      --muted:#6B7280;
+      --line:#E5E7EB;
+      --paper:#ffffff;
+      --bg:#F6F7FB;
+      --gold:#F2C14E;
+      --gold-2:#D9A441;
+      --chip:#EEF2FF;
+      --good:#16A34A;
+      --warn:#F59E0B;
+      --bad:#DC2626;
+      --shadow: 0 18px 50px rgba(15,27,45,.14);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1100px 700px at 20% 0%, rgba(242,193,78,.22), transparent 55%),
+                  radial-gradient(900px 650px at 90% 10%, rgba(15,27,45,.18), transparent 55%),
+                  var(--bg);
+      line-height:1.7;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 60px; }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(246,247,251,.74);
+      border-bottom:1px solid rgba(229,231,235,.8);
+    }
+    .topbar .inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.4px;
+      color:var(--ink);
+    }
+    .mark{
+      width:34px; height:34px; border-radius:11px;
+      background: linear-gradient(135deg, var(--ink), #1F2A44);
+      position:relative;
+      box-shadow: 0 10px 26px rgba(15,27,45,.25);
+    }
+    .mark:after{
+      content:"";
+      position:absolute; inset:8px;
+      border-radius:9px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      opacity:.95;
+    }
+    .top-actions{ margin-left:auto; display:flex; gap:10px; align-items:center; }
+    .btn{
+      border:1px solid rgba(229,231,235,.9);
+      background:#fff;
+      padding:9px 12px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:13px;
+      color:var(--ink);
+      box-shadow: 0 8px 20px rgba(15,27,45,.06);
+      cursor:pointer;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--ink), #1F2A44);
+      color:#fff;
+      border-color: transparent;
+    }
+    .btn:active{ transform: translateY(1px); }
+
+    /* Hero cover */
+    .cover{
+      margin-top:18px;
+      border-radius: calc(var(--radius) + 10px);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, rgba(15,27,45,1) 0%, rgba(31,42,68,1) 55%, rgba(15,27,45,1) 100%);
+      color:#fff;
+      position:relative;
+    }
+    .cover .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:0;
+      min-height:420px;
+    }
+    .cover .left{ padding:44px 44px 40px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; letter-spacing:2.2px;
+      text-transform:uppercase;
+      color: rgba(242,193,78,.95);
+      font-weight:800;
+    }
+    .kicker .dot{ width:8px; height:8px; border-radius:999px; background:var(--gold); box-shadow: 0 0 0 6px rgba(242,193,78,.16); }
+    h1{
+      margin:14px 0 12px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+      font-weight:900;
+    }
+    .sub{
+      font-size:16px;
+      color: rgba(231,233,238,.92);
+      max-width:46ch;
+    }
+    .meta{
+      margin-top:22px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12.5px;
+      font-weight:700;
+      color: rgba(255,255,255,.92);
+    }
+    .cover .right{
+      padding:40px 34px;
+      background:
+        radial-gradient(460px 260px at 30% 10%, rgba(242,193,78,.38), transparent 60%),
+        radial-gradient(560px 320px at 80% 60%, rgba(255,255,255,.10), transparent 60%);
+      border-left:1px solid rgba(255,255,255,.14);
+      display:flex;
+      align-items:flex-end;
+    }
+    .snapshot{
+      width:100%;
+      background: rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding:16px;
+    }
+    .snapshot h3{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color: rgba(255,255,255,.92);
+    }
+    .stats{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .stat{
+      background: rgba(15,27,45,.26);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:12px;
+    }
+    .stat .label{ font-size:11px; color: rgba(231,233,238,.86); font-weight:700; letter-spacing:.3px; }
+    .stat .value{ font-size:18px; font-weight:900; margin-top:4px; }
+    .goldline{ height:3px; width:100%; background: linear-gradient(90deg, var(--gold), rgba(242,193,78,.25)); margin-top:14px; border-radius:999px; }
+
+    /* Layout */
+    .layout{ display:grid; grid-template-columns: 320px 1fr; gap:18px; margin-top:18px; }
+    @media (max-width: 980px){
+      .cover .grid{ grid-template-columns:1fr; }
+      .cover .right{ border-left:none; border-top:1px solid rgba(255,255,255,.14); }
+      .layout{ grid-template-columns:1fr; }
+    }
+
+    /* Sidebar */
+    .side{
+      position:sticky; top:76px;
+      align-self:start;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.82);
+      border:1px solid rgba(229,231,235,.85);
+      box-shadow: 0 12px 30px rgba(15,27,45,.07);
+      overflow:hidden;
+    }
+    .side .head{
+      padding:14px 14px 12px;
+      border-bottom:1px solid rgba(229,231,235,.85);
+      display:flex; align-items:center; gap:10px;
+    }
+    .side .head strong{ font-size:13px; color:var(--ink); letter-spacing:.2px; }
+    .search{
+      padding:10px 14px 14px;
+      border-bottom:1px solid rgba(229,231,235,.85);
+    }
+    .search input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(229,231,235,.95);
+      outline:none;
+      font-weight:600;
+      color:var(--ink);
+      background:#fff;
+    }
+    .toc{
+      padding:10px 8px 12px;
+      max-height: calc(100vh - 120px);
+      overflow:auto;
+    }
+    .toc a{
+      display:block;
+      padding:9px 10px;
+      border-radius: 12px;
+      color:var(--ink);
+      font-weight:650;
+      font-size:13px;
+      border:1px solid transparent;
+    }
+    .toc a small{ display:block; color:var(--muted); font-weight:650; font-size:11px; margin-top:2px; }
+    .toc a:hover{ background: rgba(242,193,78,.10); border-color: rgba(242,193,78,.22); }
+    .toc .lvl2{ margin-left:10px; font-weight:650; }
+    .toc .lvl3{ margin-left:20px; font-weight:650; }
+
+    /* Content */
+    main{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(229,231,235,.85);
+      box-shadow: 0 12px 30px rgba(15,27,45,.07);
+      overflow:hidden;
+    }
+    .page{
+      padding: 26px 28px;
+      border-bottom:1px solid rgba(229,231,235,.85);
+    }
+    .page:last-child{ border-bottom:none; }
+
+    .section-kicker{
+      display:flex; align-items:center; gap:10px;
+      color: var(--muted);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:11px;
+    }
+    .section-kicker .bar{ width:34px; height:2px; border-radius:999px; background:var(--gold); }
+
+    h2{
+      margin:10px 0 10px;
+      font-size:28px;
+      line-height:1.15;
+      letter-spacing:-.4px;
+      font-weight:900;
+      color:var(--ink);
+    }
+    h3{
+      margin:22px 0 8px;
+      font-size:18px;
+      font-weight:850;
+      color:#1F2A44;
+      letter-spacing:-.2px;
+    }
+    p{ margin:0 0 12px; }
+    .note{
+      background: rgba(242,193,78,.10);
+      border:1px solid rgba(242,193,78,.25);
+      padding:12px 14px;
+      border-radius: 14px;
+      color:#1F2A44;
+      font-weight:600;
+      margin:14px 0 6px;
+    }
+
+    /* Fancy blocks */
+    .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    @media (max-width: 980px){ .two-col{ grid-template-columns:1fr; } }
+
+    .card{
+      background:#fff;
+      border:1px solid rgba(229,231,235,.95);
+      border-radius: 18px;
+      padding:16px;
+      box-shadow: 0 10px 22px rgba(15,27,45,.05);
+    }
+    .card strong{ color:var(--ink); }
+
+    .timeline{ position:relative; padding-left:22px; margin-top:10px; }
+    .timeline:before{ content:""; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:rgba(15,27,45,.14); border-radius:999px; }
+    .titem{ position:relative; padding:10px 12px 10px 14px; border-radius:14px; border:1px solid rgba(229,231,235,.95); background:#fff; margin:10px 0; }
+    .titem:before{ content:""; position:absolute; left:-18px; top:16px; width:10px; height:10px; border-radius:999px; background:var(--gold); box-shadow: 0 0 0 6px rgba(242,193,78,.18); }
+    .titem b{ color:var(--ink); }
+
+    /* Tables */
+    table{ width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:16px; border:1px solid rgba(229,231,235,.95); background:#fff; }
+    thead th{
+      text-align:left;
+      font-size:12px;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      padding:12px 12px;
+      color:#fff;
+      background: linear-gradient(135deg, var(--ink), #1F2A44);
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    tbody td{ padding:12px; border-bottom:1px solid rgba(229,231,235,.95); vertical-align:top; }
+    tbody tr:nth-child(odd) td{ background: rgba(246,247,251,.75); }
+    tbody tr:last-child td{ border-bottom:none; }
+
+    /* Print */
+    @media print{
+      body{ background:#fff; }
+      .topbar, .side{ display:none !important; }
+      .wrap{ padding:0; }
+      .cover{ box-shadow:none; border-radius:0; }
+      main{ box-shadow:none; border:none; }
+      .page{ page-break-after:always; border-bottom:none; }
+      .page:last-child{ page-break-after:auto; }
+      a{ text-decoration:none; }
+    }
+
+    /* Small helper */
+    .muted{ color:var(--muted); }
+    .divider{ height:1px; background:rgba(229,231,235,.95); margin:18px 0; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand" title="Prestij Tütün Annual Report Layout">
+        <span class="mark" aria-hidden="true"></span>
+        <span>PRESTİJ TÜTÜN</span>
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="btnToc">İçindekiler</button>
+        <button class="btn" onclick="window.print()">PDF Yazdır</button>
+        <button class="btn primary" id="btnTop">Başa Dön</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" id="top">
+    <section class="cover" aria-label="Kapak">
+      <div class="grid">
+        <div class="left">
+          <div class="kicker"><span class="dot"></span> Annual Report • ESG • SR2012</div>
+          <h1>Sürdürülebilirlik Raporu<br/>2024–2025</h1>
+          <p class="sub">Prestij Tütün Sanayi ve Ticaret A.Ş.’nin 1 Ocak 2024 – 31 Aralık 2025 dönemini kapsayan ilk sürdürülebilirlik raporu. Bu HTML; premium “annual report” hissiyatı için tasarlanmış, baskıya uygun bir şablondur.</p>
+          <div class="meta">
+            <span class="chip">İzmir • Merkez Operasyonlar</span>
+            <span class="chip">GRI ile Uyumlu Yaklaşım</span>
+            <span class="chip">Çevre • Sosyal • Yönetişim</span>
+          </div>
+        </div>
+        <div class="right">
+          <div class="snapshot">
+            <h3>Hızlı Görünüm (Örnek KPI Kartları)</h3>
+            <div class="stats">
+              <div class="stat"><div class="label">Sözleşmeli Üretici (2025)</div><div class="value">5.492</div></div>
+              <div class="stat"><div class="label">Yenilenebilir Üretim (2025)</div><div class="value">26.706,65 kWh</div></div>
+              <div class="stat"><div class="label">Toplam Su (2025)</div><div class="value">2.002,59 ton</div></div>
+              <div class="stat"><div class="label">Tehlikesiz Atık (2025)</div><div class="value">368.665 ton</div></div>
+            </div>
+            <div class="goldline"></div>
+            <p class="muted" style="margin:12px 0 0; font-size:12px;">Not: KPI kartları rapordaki tablo verilerinden örneklenmiştir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout" aria-label="İçerik">
+      <aside class="side" id="sidebar">
+        <div class="head">
+          <span class="mark" style="width:22px;height:22px;border-radius:10px; box-shadow:none;"></span>
+          <strong>İÇİNDEKİLER</strong>
+        </div>
+        <div class="search">
+          <input id="tocSearch" placeholder="Bölüm ara…" aria-label="Bölüm ara" />
+        </div>
+        <nav class="toc" id="toc"></nav>
+      </aside>
+
+      <main id="content">
+        <!--
+          NOT: DOCX içeriği çok uzun olduğu için bu canvas çıktısı “Annual Report” tasarımını, sayfa bileşenlerini,
+          hiyerarşiyi ve örnek içerik yerleşimini tam olarak kurar.
+
+          Tüm rapor metnini 1:1 eklemek istersen: her bölümün altına DOCX’ten paragraf/polikalar/tablo bloklarını
+          yapıştırabilirsin. TOC otomatik olarak güncellenecek.
+        -->
+
+        <article class="page" id="rapor-hakkinda">
+          <div class="section-kicker"><span class="bar"></span> Genel Bakış</div>
+          <h2>Rapor Hakkında</h2>
+          <p>Prestij Tütün Sanayi ve Ticaret A.Ş. olarak hazırladığımız ilk sürdürülebilirlik raporumuzda; iş modelimizi, sürdürülebilirlik yaklaşımımızı ve öncelikli hedeflerimizi 2024–2025 dönemi özelinde çevresel, sosyal ve kurumsal yönetişim boyutlarıyla ele alıyor; bu alanlardaki performansımızı şeffaf bir şekilde kamuoyu ile paylaşıyoruz. Bu rapor, şirketimizin sürdürülebilirlik yolculuğunda önemli bir başlangıç noktası niteliği taşımaktadır.</p>
+          <p>Raporda yer alan bilgiler, 1 Ocak 2024 – 31 Aralık 2025 tarihleri arasındaki 24 aylık faaliyet dönemini kapsamakta olup; şirketimizin İzmir’de bulunan merkez operasyonları kapsamaktadır.</p>
+          <p>Bu rapor aracılığıyla, Birleşmiş Milletler tarafından 2015 yılında kabul edilen 2030 Gündemi ve Sürdürülebilir Kalkınma Amaçlarına sağladığımız katkıları, GRI Sürdürülebilirlik Raporlama Standartları ile uyumlu olarak paylaşıyoruz.</p>
+          <div class="note">Tasarım notu: Bu sayfa, raporun “editorial” giriş sayfası. Premium annual report hissi için geniş boşluk, güçlü başlık ve altın vurgu kullanılır.</div>
+        </article>
+
+        <article class="page" id="baskan-mektubu">
+          <div class="section-kicker"><span class="bar"></span> Yönetim Mesajı</div>
+          <h2>Yönetim Kurulu Başkan Mektubu</h2>
+          <p><b>Değerli Paydaşlarımız,</b></p>
+          <p>Yaprak tütün sektöründe köklü bir aile geleneğinden gelen Prestij Tütün olarak, uzun yıllara yayılan saha deneyimimizi, üreticiyle kurduğumuz güçlü bağları ve sorumlu ticaret anlayışımızı her zaman iş modelimizin merkezinde konumlandırdık. Bugün ise bu birikimi daha sistematik, ölçülebilir ve uzun vadeli bir yaklaşımla ele aldığımız ilk Sürdürülebilirlik Raporumuzu sizlerle paylaşmanın gururunu yaşıyoruz.</p>
+          <p>Prestij Tütün olarak sürdürülebilirliği; geçici bir proje değil, üretim modelimizden tedarik zinciri yönetimine, üretici ilişkilerinden kurumsal yönetişime uzanan bütüncül bir sorumluluk alanı olarak ele alıyoruz.</p>
+          <div class="two-col" style="margin-top:14px;">
+            <div class="card">
+              <strong>Önceliklerimiz</strong>
+              <p class="muted" style="margin-top:8px;">Üreticilerle uzun vadeli iş birlikleri • Yerli tütün kullanımını artırma • Sürdürülebilir tarım uygulamalarını yaygınlaştırma</p>
+            </div>
+            <div class="card">
+              <strong>İmza</strong>
+              <p style="margin-top:8px;">Saygılarımla,<br/><b>İsmet Çakın</b><br/><span class="muted">Yönetim Kurulu Başkanı</span></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" id="kurumsal-tarihce">
+          <div class="section-kicker"><span class="bar"></span> Şirket</div>
+          <h2>Kurumsal Tarihçemiz</h2>
+          <p>Prestij Tütün Sanayi ve Ticaret A.Ş., 20. yüzyılın ilk yarısından bu yana yaprak tütün sektöründe faaliyet gösteren Çakın Ailesi’nin köklü saha deneyimi ve ticari birikimi üzerine inşa edilerek 2005 yılında İzmir’de kurulmuştur.</p>
+          <div class="timeline" aria-label="Zaman çizelgesi">
+            <div class="titem"><b>1930’lar sonu</b> — Mahmut Nedim Çakın, Samsun/Bafra’da uluslararası sigara fabrikalarına yaprak tütün tedarikine başladı.</div>
+            <div class="titem"><b>1950’ler</b> — İzmir’de Hasan Çakın Komandit Şirketi kuruldu.</div>
+            <div class="titem"><b>1982</b> — Çakın Tütün kuruldu.</div>
+            <div class="titem"><b>2005</b> — Prestij Tütün Sanayi ve Ticaret A.Ş. İzmir’de kuruldu.</div>
+            <div class="titem"><b>2012</b> — JTI ile uzun vadeli alım sözleşmesi imzalandı.</div>
+          </div>
+          <p class="muted">Tasarım notu: Annual report’larda tarihçe sayfaları timeline bileşeniyle güçlü görünür.</p>
+        </article>
+
+        <article class="page" id="urunler">
+          <div class="section-kicker"><span class="bar"></span> Portföy</div>
+          <h2>Ürünlerimiz</h2>
+          <div class="two-col">
+            <div class="card">
+              <strong>Oryantal Yaprak Tütün</strong>
+              <p style="margin-top:8px;">Ege Bölgesi başta olmak üzere farklı üretim havzalarında yetiştirilmekte; aroma, yaprak yapısı ve kalite özelliklerine göre sınıflandırılmaktadır.</p>
+              <p class="muted" style="margin:0; font-weight:700;">Üretilen çeşitler:</p>
+              <p style="margin-top:6px;">Ege Özbaş • Sarıbağlar 2020 • Akhisar 97 • Birlik 124 • Birlik 128</p>
+            </div>
+            <div class="card">
+              <strong>SCV (Güneşte Kurutulan Virginia)</strong>
+              <p style="margin-top:8px;">Yerli tütün kullanım oranlarının artırılmasına yönelik mevzuat ve sektör dinamikleri doğrultusunda portföyde yer alır. 2023 Hatay; 2024 Adıyaman, Siirt ve Batman’da alıma başlanmıştır.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="page" id="is-modeli">
+          <div class="section-kicker"><span class="bar"></span> İş Modeli</div>
+          <h2>İş Modelimiz, Değer Zincirimiz</h2>
+          <p>Prestij Tütün’ün iş modeli, sözleşmeli tarım yaklaşımı üzerine inşa edilmiştir. Teknik Saha Ekipleri aracılığıyla üretim süreçleri yerinde izlenmekte; kalite standartları, çevresel etkiler ve sosyal uygunluk unsurları bütüncül bir yaklaşımla yönetilmektedir.</p>
+          <div class="divider"></div>
+          <h3>Değer Zinciri Aşamaları</h3>
+          <div class="two-col">
+            <div class="card"><strong>1) Üretim Öncesi</strong><p style="margin-top:8px;">Sözleşmeli tarım, kalite yönetimi, fidelik, dikim, bakım, hasat ve kurutma süreçleri.</p></div>
+            <div class="card"><strong>2) Doğrudan Operasyonlar</strong><p style="margin-top:8px;">Kalite kontrol, depolama, ticaret ve planlama faaliyetleri.</p></div>
+            <div class="card"><strong>3) Üretim Sonrası</strong><p style="margin-top:8px;">Satış, lojistik, dağıtım; pazara erişim ve müşteri memnuniyeti.</p></div>
+            <div class="card"><strong>4) Yaşam Döngüsü Sonu</strong><p style="margin-top:8px;">Ambalaj atıkları ve lojistik malzemeleri üzerinden dolaylı çevresel etkiler.</p></div>
+          </div>
+          <div class="note">Not: DOCX’teki “Yerli Tütün Yasası” oranları ve trend tabloları bu bölümden sonra yerleştirilebilir.</div>
+        </article>
+
+        <article class="page" id="ekonomik-performans">
+          <div class="section-kicker"><span class="bar"></span> Performans</div>
+          <h2>Ekonomik Performans</h2>
+          <p>Prestij Tütün’ün ekonomik performansı, sözleşmeli tarım modeli, yaygın üretici ağı ve doğrudan müşteri ilişkileri üzerinden şekillenmektedir. Satış gelirlerindeki artış; üretim ölçeğinin genişlediğini ve tedarik sürekliliğinin güçlendiğini göstermektedir.</p>
+          <h3>Overall Volume (Ton) 2020–2024 Türkiye Tobacco Crop</h3>
+          <div class="muted" style="margin-bottom:10px; font-weight:650;">(Rapor tablosundan örneklenmiştir.)</div>
+          <table>
+            <thead>
+              <tr><th>Menşei</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>İzmir</td><td>40.916</td><td>33.000</td><td>37.400</td><td>41.100</td><td>41.200</td></tr>
+              <tr><td>Samsun</td><td>3.341</td><td>4.100</td><td>3.565</td><td>2.980</td><td>2.980</td></tr>
+              <tr><td>Basma</td><td>4.285</td><td>2.800</td><td>1.625</td><td>1.490</td><td>1.490</td></tr>
+              <tr><td>İzmir Adıyaman</td><td>11.192</td><td>10.800</td><td>6.520</td><td>5.940</td><td>5.940</td></tr>
+              <tr><td>SCV-FCV</td><td>4.188</td><td>5.100</td><td>5.950</td><td>17.600</td><td>2.300</td></tr>
+              <tr><td>Prilep</td><td>800</td><td>710</td><td>510</td><td>2.300</td><td>1.750</td></tr>
+              <tr><td>Talgar-Burley</td><td>20</td><td>230</td><td>550</td><td>1.750</td><td>17.600</td></tr>
+              <tr><td>Diğer*</td><td>664</td><td>1.495</td><td>2.725</td><td>4.934</td><td>740</td></tr>
+              <tr><td><b>Toplam</b></td><td><b>65.406</b></td><td><b>58.235</b></td><td><b>58.845</b></td><td><b>78.094</b></td><td><b>74.000</b></td></tr>
+            </tbody>
+          </table>
+          <div class="note">Bu HTML, baskı için hazır. “PDF Yazdır” ile A4’e alabilirsin. Daha yüksek kalite için Chrome/Edge “Save as PDF” önerilir.</div>
+        </article>
+
+        <article class="page" id="yonetisim">
+          <div class="section-kicker"><span class="bar"></span> ESG</div>
+          <h2>Yönetişim</h2>
+          <p>Prestij Tütün’de sürdürülebilir yönetim; ekonomik performansın korunmasıyla birlikte çevresel ve sosyal etkilerin sorumlu biçimde yönetilmesini ve bu üç boyutun kurumsal yönetişim yapısı içinde bütüncül ele alınmasını ifade eder.</p>
+          <div class="two-col" style="margin-top:14px;">
+            <div class="card"><strong>Yönetim Kurulu Gözetimi</strong><p style="margin-top:8px;">Sürdürülebilirlik önceliklerinin stratejiyle uyumu, politika ve uygulamaların hayata geçirilmesi.</p></div>
+            <div class="card"><strong>Komiteler</strong><p style="margin-top:8px;">Disiplin Komitesi • KVKK Komitesi; etik, uyum ve veri güvenliği alanlarında tamamlayıcı yönetişim.</p></div>
+          </div>
+        </article>
+
+        <article class="page" id="cevre">
+          <div class="section-kicker"><span class="bar"></span> Çevre</div>
+          <h2>Doğaya Saygılı Tarım, Dayanıklı Üretim</h2>
+          <p>Prestij Tütün için çevre; tütünün tarımsal üretiminden alım ve ticaret süreçlerine kadar uzanan değer zinciri boyunca doğal kaynakların korunması ve çevresel etkilerin sorumlu bir yaklaşımla yönetilmesi anlamına gelir.</p>
+          <h3>Enerji Yönetimi (Örnek)</h3>
+          <p>Bornova’daki tesis bünyesinde 2024 yılında 34 adet güneş panelinden oluşan ~15 kW kurulu güce sahip sistem devreye alınmıştır. 2024 üretimi 15.707,67 kWh; 2025 itibarıyla 26.706,65 kWh seviyesine ulaşmıştır.</p>
+          <h3>Su Tüketimi</h3>
+          <p>Toplam su tüketimi: 2022 (582,70 ton), 2023 (637,20 ton), 2024 (1.839,60 ton), 2025 (2.002,59 ton).</p>
+          <h3>Atık Yönetimi</h3>
+          <p>Tehlikeli olmayan atıklar lisanslı firmalara MoTAT üzerinden beyan edilerek yönlendirilmektedir. 2025’te toplam tehlikeli olmayan atık miktarı 368.665 ton olarak raporlanmıştır.</p>
+        </article>
+
+        <article class="page" id="sosyal">
+          <div class="section-kicker"><span class="bar"></span> Sosyal</div>
+          <h2>İnsan Odaklı Yaklaşım</h2>
+          <p>Prestij Tütün’ün sosyal yaklaşımı; üreticiler, çalışanlar ve kırsal topluluklar üzerindeki etkilerin sorumlu biçimde yönetilmesini esas alır.</p>
+          <h3>İş Sağlığı ve Güvenliği</h3>
+          <p>Önleyici uygulamalar ve denetimler sonucunda raporlama döneminde şirket bünyesinde iş kazası yaşanmadığı belirtilmiştir. İSG eğitimleri düzenli yürütülmektedir.</p>
+          <h3>Çeşitlilik, Kapsayıcılık ve Fırsat Eşitliği</h3>
+          <p>2025 yılı itibarıyla toplam 59 çalışan bulunmaktadır. Kadın çalışan sayısı 2024’te 5’ten 2025 sonunda 8’e yükselmiştir.</p>
+          <div class="note">Bu bölümde DOCX’teki çalışan gelişimi, memnuniyet anketleri ve EİB proje detayları “card” bloklarıyla sayfa sayfa bölünebilir.</div>
+        </article>
+
+        <article class="page" id="ekler">
+          <div class="section-kicker"><span class="bar"></span> Ekler</div>
+          <h2>Ekler ve Göstergeler</h2>
+          <p class="muted">Aşağıdaki tablo, DOCX “Ekonomik Göstergeler” bölümünden örneklenmiştir. Diğer ek tabloları aynı stil ile çoğaltabilirsin.</p>
+          <table>
+            <thead>
+              <tr><th>Gösterge</th><th>Birim</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Toplam satışlar – Yurt içi</td><td>TL</td><td>328.904.808,13</td><td>700.344.199,31</td><td>1.030.311.143,12</td><td>—</td></tr>
+              <tr><td>Satış miktarları</td><td>KG</td><td>4.410.475,70</td><td>5.455.492,60</td><td>5.191.825,90</td><td>—</td></tr>
+              <tr><td>Sözleşmeli üretici sayısı</td><td>Adet</td><td>4.046</td><td>4.831</td><td>5.397</td><td>5.492</td></tr>
+              <tr><td>Sözleşmeli tarım hacmi</td><td>KG</td><td>5.620.750,00</td><td>6.867.650,00</td><td>7.932.900,00</td><td>8.519.400,00</td></tr>
+            </tbody>
+          </table>
+          <div class="divider"></div>
+          <p class="muted">İstersen: “Yenilenemez Enerji”, “Yenilenebilir Enerji”, “Su Tüketimi”, “Atık Miktarları”, “Çalışan” ek tablolarını da bu sayfaya ekleyebilirsin.</p>
+        </article>
+
+        <article class="page" id="footer">
+          <div class="section-kicker"><span class="bar"></span> Kapanış</div>
+          <h2>İletişim ve Notlar</h2>
+          <p><b>Prestij Tütün Sanayi ve Ticaret A.Ş.</b><br/>Merkez: İzmir</p>
+          <p class="muted">Bu HTML tasarım, annual report estetiğine göre hazırlanmıştır: güçlü tipografi hiyerarşisi, altın vurgu, editorial boşluk, kartlı KPI sunumu ve baskı uyumlu sayfa bölünmeleri.</p>
+        </article>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    // --- TOC generator (auto) ---
+    const content = document.getElementById('content');
+    const toc = document.getElementById('toc');
+    const search = document.getElementById('tocSearch');
+
+    function slugify(str){
+      return (str || '')
+        .toLowerCase()
+        .replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u')
+        .replace(/[^a-z0-9\s-]/g,'')
+        .trim()
+        .replace(/\s+/g,'-')
+        .replace(/-+/g,'-');
+    }
+
+    function buildTOC(){
+      toc.innerHTML = '';
+      const items = [];
+      const nodes = content.querySelectorAll('h2, h3');
+      nodes.forEach(node => {
+        const level = node.tagName === 'H2' ? 2 : 3;
+        const title = node.textContent.trim();
+        let id = node.id;
+        if(!id){
+          id = slugify(title);
+          // avoid duplicates
+          let unique = id; let i = 2;
+          while(document.getElementById(unique)) unique = `${id}-${i++}`;
+          id = unique;
+          node.id = id;
+        }
+        items.push({ level, title, id });
+      });
+
+      items.forEach(it => {
+        const a = document.createElement('a');
+        a.href = `#${it.id}`;
+        a.className = it.level === 2 ? '' : 'lvl3';
+        if(it.level === 3) a.classList.add('lvl3');
+        a.innerHTML = `${it.title}`;
+        toc.appendChild(a);
+      });
+
+      // smooth scroll
+      toc.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = a.getAttribute('href').slice(1);
+          const el = document.getElementById(id);
+          if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      });
+    }
+
+    buildTOC();
+
+    // search filter
+    search?.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      toc.querySelectorAll('a').forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    });
+
+    // UI buttons
+    document.getElementById('btnTop')?.addEventListener('click', () => {
+      document.getElementById('top')?.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+    document.getElementById('btnToc')?.addEventListener('click', () => {
+      const sb = document.getElementById('sidebar');
+      if(!sb) return;
+      const isHidden = getComputedStyle(sb).display === 'none';
+      // On mobile, sidebar becomes non-sticky; just scroll to it.
+      sb.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  </script>
+</body>
+</html>
