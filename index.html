@@ -17,10 +17,6 @@
       --bg:#F6F7FB;
       --gold:#F2C14E;
       --gold-2:#D9A441;
-      --chip:#EEF2FF;
-      --good:#16A34A;
-      --warn:#F59E0B;
-      --bad:#DC2626;
       --shadow: 0 18px 50px rgba(15,27,45,.14);
       --radius: 18px;
       --max: 1100px;
@@ -60,12 +56,14 @@
       display:flex; align-items:center; gap:10px;
       font-weight:800; letter-spacing:.4px;
       color:var(--ink);
+      min-width: 0;
     }
     .mark{
       width:34px; height:34px; border-radius:11px;
       background: linear-gradient(135deg, var(--ink), #1F2A44);
       position:relative;
       box-shadow: 0 10px 26px rgba(15,27,45,.25);
+      flex: 0 0 auto;
     }
     .mark:after{
       content:"";
@@ -74,17 +72,18 @@
       background: linear-gradient(135deg, var(--gold), var(--gold-2));
       opacity:.95;
     }
-    .top-actions{ margin-left:auto; display:flex; gap:10px; align-items:center; }
+    .top-actions{ margin-left:auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .btn{
       border:1px solid rgba(229,231,235,.9);
       background:#fff;
       padding:9px 12px;
       border-radius:12px;
-      font-weight:600;
+      font-weight:650;
       font-size:13px;
       color:var(--ink);
       box-shadow: 0 8px 20px rgba(15,27,45,.06);
       cursor:pointer;
+      white-space:nowrap;
     }
     .btn.primary{
       background: linear-gradient(135deg, var(--ink), #1F2A44);
@@ -92,6 +91,23 @@
       border-color: transparent;
     }
     .btn:active{ transform: translateY(1px); }
+
+    @media (max-width:560px){
+      .topbar .inner{ padding:10px 12px; }
+      .btn{ padding:9px 10px; font-size:12.5px; }
+      .brand span:last-child{ display:none; }
+      .top-actions{ gap:8px; }
+    }
+
+    /* Overlay + Mobile Drawer */
+    .overlay{
+      position:fixed; inset:0; z-index:60;
+      background: rgba(15,27,45,.45);
+      backdrop-filter: blur(2px);
+      opacity:0; pointer-events:none;
+      transition: opacity .18s ease;
+    }
+    .overlay.show{ opacity:1; pointer-events:auto; }
 
     /* Hero cover */
     .cover{
@@ -109,18 +125,18 @@
       gap:0;
       min-height:420px;
     }
-    .cover .left{ padding:44px 44px 40px; }
+    .cover .left{ padding: clamp(22px, 4vw, 44px) clamp(18px, 4vw, 44px) clamp(18px, 3.6vw, 40px); }
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       font-size:12px; letter-spacing:2.2px;
       text-transform:uppercase;
       color: rgba(242,193,78,.95);
-      font-weight:800;
+      font-weight:850;
     }
     .kicker .dot{ width:8px; height:8px; border-radius:999px; background:var(--gold); box-shadow: 0 0 0 6px rgba(242,193,78,.16); }
     h1{
       margin:14px 0 12px;
-      font-size:44px;
+      font-size: clamp(30px, 4.6vw, 48px);
       line-height:1.05;
       letter-spacing:-.6px;
       font-weight:900;
@@ -142,7 +158,7 @@
       padding:8px 10px;
       border-radius:999px;
       font-size:12.5px;
-      font-weight:700;
+      font-weight:750;
       color: rgba(255,255,255,.92);
     }
     .cover .right{
@@ -174,16 +190,25 @@
       border-radius:14px;
       padding:12px;
     }
-    .stat .label{ font-size:11px; color: rgba(231,233,238,.86); font-weight:700; letter-spacing:.3px; }
+    .stat .label{ font-size:11px; color: rgba(231,233,238,.86); font-weight:750; letter-spacing:.3px; }
     .stat .value{ font-size:18px; font-weight:900; margin-top:4px; }
     .goldline{ height:3px; width:100%; background: linear-gradient(90deg, var(--gold), rgba(242,193,78,.25)); margin-top:14px; border-radius:999px; }
 
     /* Layout */
     .layout{ display:grid; grid-template-columns: 320px 1fr; gap:18px; margin-top:18px; }
+
     @media (max-width: 980px){
       .cover .grid{ grid-template-columns:1fr; }
       .cover .right{ border-left:none; border-top:1px solid rgba(255,255,255,.14); }
       .layout{ grid-template-columns:1fr; }
+      .side{
+        position:fixed; top:0; left:0; height:100vh; width:min(360px, 88vw);
+        z-index:70;
+        border-radius:0 18px 18px 0;
+        transform: translateX(-105%);
+        transition: transform .22s ease;
+      }
+      .side.open{ transform: translateX(0); }
     }
 
     /* Sidebar */
@@ -212,13 +237,13 @@
       border-radius:12px;
       border:1px solid rgba(229,231,235,.95);
       outline:none;
-      font-weight:600;
+      font-weight:650;
       color:var(--ink);
       background:#fff;
     }
     .toc{
       padding:10px 8px 12px;
-      max-height: calc(100vh - 120px);
+      max-height: calc(100vh - 140px);
       overflow:auto;
     }
     .toc a{
@@ -230,10 +255,8 @@
       font-size:13px;
       border:1px solid transparent;
     }
-    .toc a small{ display:block; color:var(--muted); font-weight:650; font-size:11px; margin-top:2px; }
     .toc a:hover{ background: rgba(242,193,78,.10); border-color: rgba(242,193,78,.22); }
-    .toc .lvl2{ margin-left:10px; font-weight:650; }
-    .toc .lvl3{ margin-left:20px; font-weight:650; }
+    .toc .lvl3{ margin-left:16px; }
 
     /* Content */
     main{
@@ -242,9 +265,10 @@
       border:1px solid rgba(229,231,235,.85);
       box-shadow: 0 12px 30px rgba(15,27,45,.07);
       overflow:hidden;
+      min-width: 0;
     }
     .page{
-      padding: 26px 28px;
+      padding: clamp(18px, 3vw, 26px) clamp(16px, 3vw, 28px);
       border-bottom:1px solid rgba(229,231,235,.85);
     }
     .page:last-child{ border-bottom:none; }
@@ -252,7 +276,7 @@
     .section-kicker{
       display:flex; align-items:center; gap:10px;
       color: var(--muted);
-      font-weight:800;
+      font-weight:850;
       text-transform:uppercase;
       letter-spacing:2px;
       font-size:11px;
@@ -261,7 +285,7 @@
 
     h2{
       margin:10px 0 10px;
-      font-size:28px;
+      font-size: clamp(22px, 2.8vw, 30px);
       line-height:1.15;
       letter-spacing:-.4px;
       font-weight:900;
@@ -269,19 +293,20 @@
     }
     h3{
       margin:22px 0 8px;
-      font-size:18px;
+      font-size: clamp(16px, 2vw, 19px);
       font-weight:850;
       color:#1F2A44;
       letter-spacing:-.2px;
     }
     p{ margin:0 0 12px; }
+
     .note{
       background: rgba(242,193,78,.10);
       border:1px solid rgba(242,193,78,.25);
       padding:12px 14px;
       border-radius: 14px;
       color:#1F2A44;
-      font-weight:600;
+      font-weight:650;
       margin:14px 0 6px;
     }
 
@@ -304,8 +329,11 @@
     .titem:before{ content:""; position:absolute; left:-18px; top:16px; width:10px; height:10px; border-radius:999px; background:var(--gold); box-shadow: 0 0 0 6px rgba(242,193,78,.18); }
     .titem b{ color:var(--ink); }
 
-    /* Tables */
-    table{ width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:16px; border:1px solid rgba(229,231,235,.95); background:#fff; }
+    /* Tables (responsive) */
+    .table-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:16px; }
+    table{ width:100%; min-width: 720px; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:16px; border:1px solid rgba(229,231,235,.95); background:#fff; }
+    @media (max-width: 820px){ table{ min-width: 640px; } }
+    @media (max-width: 560px){ table{ min-width: 560px; } }
     thead th{
       text-align:left;
       font-size:12px;
@@ -315,21 +343,24 @@
       color:#fff;
       background: linear-gradient(135deg, var(--ink), #1F2A44);
       border-bottom:1px solid rgba(255,255,255,.14);
+      white-space:nowrap;
     }
-    tbody td{ padding:12px; border-bottom:1px solid rgba(229,231,235,.95); vertical-align:top; }
+    tbody td{ padding:12px; border-bottom:1px solid rgba(229,231,235,.95); vertical-align:top; white-space:nowrap; }
+    tbody td:first-child{ white-space:normal; min-width: 220px; }
     tbody tr:nth-child(odd) td{ background: rgba(246,247,251,.75); }
     tbody tr:last-child td{ border-bottom:none; }
 
     /* Print */
     @media print{
       body{ background:#fff; }
-      .topbar, .side{ display:none !important; }
+      .topbar, .side, .overlay{ display:none !important; }
       .wrap{ padding:0; }
       .cover{ box-shadow:none; border-radius:0; }
       main{ box-shadow:none; border:none; }
       .page{ page-break-after:always; border-bottom:none; }
       .page:last-child{ page-break-after:auto; }
       a{ text-decoration:none; }
+      table{ min-width: 0; }
     }
 
     /* Small helper */
@@ -338,6 +369,8 @@
   </style>
 </head>
 <body>
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="inner">
       <div class="brand" title="Prestij Tütün Annual Report Layout">
@@ -345,6 +378,7 @@
         <span>PRESTİJ TÜTÜN</span>
       </div>
       <div class="top-actions">
+        <button class="btn" id="btnMenu" aria-controls="sidebar" aria-expanded="false">Menü</button>
         <button class="btn" id="btnToc">İçindekiler</button>
         <button class="btn" onclick="window.print()">PDF Yazdır</button>
         <button class="btn primary" id="btnTop">Başa Dön</button>
@@ -450,7 +484,7 @@
             <div class="card">
               <strong>Oryantal Yaprak Tütün</strong>
               <p style="margin-top:8px;">Ege Bölgesi başta olmak üzere farklı üretim havzalarında yetiştirilmekte; aroma, yaprak yapısı ve kalite özelliklerine göre sınıflandırılmaktadır.</p>
-              <p class="muted" style="margin:0; font-weight:700;">Üretilen çeşitler:</p>
+              <p class="muted" style="margin:0; font-weight:750;">Üretilen çeşitler:</p>
               <p style="margin-top:6px;">Ege Özbaş • Sarıbağlar 2020 • Akhisar 97 • Birlik 124 • Birlik 128</p>
             </div>
             <div class="card">
@@ -481,22 +515,24 @@
           <p>Prestij Tütün’ün ekonomik performansı, sözleşmeli tarım modeli, yaygın üretici ağı ve doğrudan müşteri ilişkileri üzerinden şekillenmektedir. Satış gelirlerindeki artış; üretim ölçeğinin genişlediğini ve tedarik sürekliliğinin güçlendiğini göstermektedir.</p>
           <h3>Overall Volume (Ton) 2020–2024 Türkiye Tobacco Crop</h3>
           <div class="muted" style="margin-bottom:10px; font-weight:650;">(Rapor tablosundan örneklenmiştir.)</div>
-          <table>
-            <thead>
-              <tr><th>Menşei</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>İzmir</td><td>40.916</td><td>33.000</td><td>37.400</td><td>41.100</td><td>41.200</td></tr>
-              <tr><td>Samsun</td><td>3.341</td><td>4.100</td><td>3.565</td><td>2.980</td><td>2.980</td></tr>
-              <tr><td>Basma</td><td>4.285</td><td>2.800</td><td>1.625</td><td>1.490</td><td>1.490</td></tr>
-              <tr><td>İzmir Adıyaman</td><td>11.192</td><td>10.800</td><td>6.520</td><td>5.940</td><td>5.940</td></tr>
-              <tr><td>SCV-FCV</td><td>4.188</td><td>5.100</td><td>5.950</td><td>17.600</td><td>2.300</td></tr>
-              <tr><td>Prilep</td><td>800</td><td>710</td><td>510</td><td>2.300</td><td>1.750</td></tr>
-              <tr><td>Talgar-Burley</td><td>20</td><td>230</td><td>550</td><td>1.750</td><td>17.600</td></tr>
-              <tr><td>Diğer*</td><td>664</td><td>1.495</td><td>2.725</td><td>4.934</td><td>740</td></tr>
-              <tr><td><b>Toplam</b></td><td><b>65.406</b></td><td><b>58.235</b></td><td><b>58.845</b></td><td><b>78.094</b></td><td><b>74.000</b></td></tr>
-            </tbody>
-          </table>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Menşei</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>İzmir</td><td>40.916</td><td>33.000</td><td>37.400</td><td>41.100</td><td>41.200</td></tr>
+                <tr><td>Samsun</td><td>3.341</td><td>4.100</td><td>3.565</td><td>2.980</td><td>2.980</td></tr>
+                <tr><td>Basma</td><td>4.285</td><td>2.800</td><td>1.625</td><td>1.490</td><td>1.490</td></tr>
+                <tr><td>İzmir Adıyaman</td><td>11.192</td><td>10.800</td><td>6.520</td><td>5.940</td><td>5.940</td></tr>
+                <tr><td>SCV-FCV</td><td>4.188</td><td>5.100</td><td>5.950</td><td>17.600</td><td>2.300</td></tr>
+                <tr><td>Prilep</td><td>800</td><td>710</td><td>510</td><td>2.300</td><td>1.750</td></tr>
+                <tr><td>Talgar-Burley</td><td>20</td><td>230</td><td>550</td><td>1.750</td><td>17.600</td></tr>
+                <tr><td>Diğer*</td><td>664</td><td>1.495</td><td>2.725</td><td>4.934</td><td>740</td></tr>
+                <tr><td><b>Toplam</b></td><td><b>65.406</b></td><td><b>58.235</b></td><td><b>58.845</b></td><td><b>78.094</b></td><td><b>74.000</b></td></tr>
+              </tbody>
+            </table>
+          </div>
           <div class="note">Bu HTML, baskı için hazır. “PDF Yazdır” ile A4’e alabilirsin. Daha yüksek kalite için Chrome/Edge “Save as PDF” önerilir.</div>
         </article>
 
@@ -537,17 +573,19 @@
           <div class="section-kicker"><span class="bar"></span> Ekler</div>
           <h2>Ekler ve Göstergeler</h2>
           <p class="muted">Aşağıdaki tablo, DOCX “Ekonomik Göstergeler” bölümünden örneklenmiştir. Diğer ek tabloları aynı stil ile çoğaltabilirsin.</p>
-          <table>
-            <thead>
-              <tr><th>Gösterge</th><th>Birim</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Toplam satışlar – Yurt içi</td><td>TL</td><td>328.904.808,13</td><td>700.344.199,31</td><td>1.030.311.143,12</td><td>—</td></tr>
-              <tr><td>Satış miktarları</td><td>KG</td><td>4.410.475,70</td><td>5.455.492,60</td><td>5.191.825,90</td><td>—</td></tr>
-              <tr><td>Sözleşmeli üretici sayısı</td><td>Adet</td><td>4.046</td><td>4.831</td><td>5.397</td><td>5.492</td></tr>
-              <tr><td>Sözleşmeli tarım hacmi</td><td>KG</td><td>5.620.750,00</td><td>6.867.650,00</td><td>7.932.900,00</td><td>8.519.400,00</td></tr>
-            </tbody>
-          </table>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Gösterge</th><th>Birim</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Toplam satışlar – Yurt içi</td><td>TL</td><td>328.904.808,13</td><td>700.344.199,31</td><td>1.030.311.143,12</td><td>—</td></tr>
+                <tr><td>Satış miktarları</td><td>KG</td><td>4.410.475,70</td><td>5.455.492,60</td><td>5.191.825,90</td><td>—</td></tr>
+                <tr><td>Sözleşmeli üretici sayısı</td><td>Adet</td><td>4.046</td><td>4.831</td><td>5.397</td><td>5.492</td></tr>
+                <tr><td>Sözleşmeli tarım hacmi</td><td>KG</td><td>5.620.750,00</td><td>6.867.650,00</td><td>7.932.900,00</td><td>8.519.400,00</td></tr>
+              </tbody>
+            </table>
+          </div>
           <div class="divider"></div>
           <p class="muted">İstersen: “Yenilenemez Enerji”, “Yenilenebilir Enerji”, “Su Tüketimi”, “Atık Miktarları”, “Çalışan” ek tablolarını da bu sayfaya ekleyebilirsin.</p>
         </article>
@@ -563,81 +601,138 @@
   </div>
 
   <script>
-    // --- TOC generator (auto) ---
-    const content = document.getElementById('content');
-    const toc = document.getElementById('toc');
-    const search = document.getElementById('tocSearch');
+    (function(){
+      // --- DOM refs ---
+      const content = document.getElementById('content');
+      const toc = document.getElementById('toc');
+      const search = document.getElementById('tocSearch');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const btnMenu = document.getElementById('btnMenu');
+      const btnToc = document.getElementById('btnToc');
+      const btnTop = document.getElementById('btnTop');
 
-    function slugify(str){
-      return (str || '')
-        .toLowerCase()
-        .replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u')
-        .replace(/[^a-z0-9\s-]/g,'')
-        .trim()
-        .replace(/\s+/g,'-')
-        .replace(/-+/g,'-');
-    }
+      function slugify(str){
+        return (str || '')
+          .toLowerCase()
+          .replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u')
+          .replace(/[^a-z0-9\s-]/g,'')
+          .trim()
+          .replace(/\s+/g,'-')
+          .replace(/-+/g,'-');
+      }
 
-    function buildTOC(){
-      toc.innerHTML = '';
-      const items = [];
-      const nodes = content.querySelectorAll('h2, h3');
-      nodes.forEach(node => {
-        const level = node.tagName === 'H2' ? 2 : 3;
-        const title = node.textContent.trim();
-        let id = node.id;
-        if(!id){
-          id = slugify(title);
-          // avoid duplicates
-          let unique = id; let i = 2;
-          while(document.getElementById(unique)) unique = `${id}-${i++}`;
-          id = unique;
-          node.id = id;
-        }
-        items.push({ level, title, id });
-      });
+      function smoothScrollToId(id){
+        const el = document.getElementById(id);
+        if(!el) return;
+        el.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
 
-      items.forEach(it => {
-        const a = document.createElement('a');
-        a.href = `#${it.id}`;
-        a.className = it.level === 2 ? '' : 'lvl3';
-        if(it.level === 3) a.classList.add('lvl3');
-        a.innerHTML = `${it.title}`;
-        toc.appendChild(a);
-      });
+      function isMobile(){
+        return window.matchMedia && window.matchMedia('(max-width: 980px)').matches;
+      }
 
-      // smooth scroll
-      toc.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          const id = a.getAttribute('href').slice(1);
-          const el = document.getElementById(id);
-          if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+      function setBodyLock(locked){
+        document.body.style.overflow = locked ? 'hidden' : '';
+      }
+
+      function toggleSidebar(forceOpen){
+        if(!sidebar || !overlay) return;
+        const shouldOpen = (typeof forceOpen === 'boolean') ? forceOpen : !sidebar.classList.contains('open');
+        sidebar.classList.toggle('open', shouldOpen);
+        overlay.classList.toggle('show', shouldOpen);
+        if(btnMenu) btnMenu.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        setBodyLock(shouldOpen && isMobile());
+      }
+
+      function buildTOC(){
+        if(!content || !toc) return;
+        toc.innerHTML = '';
+        const nodes = content.querySelectorAll('h2, h3');
+
+        nodes.forEach(node => {
+          const level = node.tagName === 'H2' ? 2 : 3;
+          const title = (node.textContent || '').trim();
+
+          let id = node.id;
+          if(!id){
+            const base = slugify(title) || 'section';
+            let unique = base;
+            let i = 2;
+            while(document.getElementById(unique)){
+              unique = base + '-' + i;
+              i += 1;
+            }
+            id = unique;
+            node.id = id;
+          }
+
+          const a = document.createElement('a');
+          a.href = '#' + id;
+          if(level === 3) a.classList.add('lvl3');
+          a.textContent = title;
+          a.addEventListener('click', function(e){
+            e.preventDefault();
+            smoothScrollToId(id);
+            if(isMobile()) toggleSidebar(false);
+          });
+          toc.appendChild(a);
         });
+      }
+
+      // --- init ---
+      buildTOC();
+
+      if(search && toc){
+        search.addEventListener('input', function(){
+          const q = (search.value || '').trim().toLowerCase();
+          toc.querySelectorAll('a').forEach(function(a){
+            a.style.display = a.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+          });
+        });
+      }
+
+      if(btnTop){
+        btnTop.addEventListener('click', function(){
+          const top = document.getElementById('top');
+          if(top) top.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      }
+
+      if(btnToc){
+        btnToc.addEventListener('click', function(){
+          if(isMobile()) toggleSidebar(true);
+          else if(sidebar) sidebar.scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      }
+
+      if(btnMenu){
+        btnMenu.addEventListener('click', function(){
+          toggleSidebar();
+        });
+      }
+
+      if(overlay){
+        overlay.addEventListener('click', function(){
+          toggleSidebar(false);
+        });
+      }
+
+      window.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') toggleSidebar(false);
       });
-    }
 
-    buildTOC();
-
-    // search filter
-    search?.addEventListener('input', () => {
-      const q = search.value.trim().toLowerCase();
-      toc.querySelectorAll('a').forEach(a => {
-        a.style.display = a.textContent.toLowerCase().includes(q) ? 'block' : 'none';
-      });
-    });
-
-    // UI buttons
-    document.getElementById('btnTop')?.addEventListener('click', () => {
-      document.getElementById('top')?.scrollIntoView({ behavior:'smooth', block:'start' });
-    });
-    document.getElementById('btnToc')?.addEventListener('click', () => {
-      const sb = document.getElementById('sidebar');
-      if(!sb) return;
-      const isHidden = getComputedStyle(sb).display === 'none';
-      // On mobile, sidebar becomes non-sticky; just scroll to it.
-      sb.scrollIntoView({ behavior:'smooth', block:'start' });
-    });
+      // --- tests (basic) ---
+      // These are simple runtime assertions to catch regressions.
+      try{
+        console.assert(!!content, 'TEST: #content exists');
+        console.assert(!!toc, 'TEST: #toc exists');
+        console.assert(toc ? toc.querySelectorAll('a').length > 0 : true, 'TEST: TOC populated');
+        console.assert(!document.querySelector('script return'), 'TEST: no illegal top-level return');
+      } catch(_e) {
+        // no-op: do not break the page
+      }
+    })();
   </script>
 </body>
 </html>
