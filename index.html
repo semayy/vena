@@ -1,83 +1,590 @@
-Aşağıdaki yapı, Gemini’ye “yatay videodan dikey Reels üret” işini **kurumsal logo/görselleri birebir** koruyacak şekilde net tarif eder. En iyi sonuç için prompt’u tek parça uzun yaz ve dosya adlarını (yüklediğin asset’lerle birebir aynı) kullan.
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VENA - Dijital Dönüşüm ve Marka Stratejisi</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .logo-font {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar-item.active {
+            background-color: #2C352D; /* Vena Botanical Dark Green */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .vena-bg {
+            background-color: #2C352D;
+        }
+        .vena-text {
+            color: #2C352D;
+        }
+        
+        /* Mobil menü için gizli kaydırma çubuğu */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-stone-50">
 
----
+<div class="min-h-screen flex flex-col md:flex-row w-full overflow-x-hidden">
+    <!-- Sidebar -->
+    <aside class="w-full md:w-64 bg-[#1A1C1A] text-white flex flex-col shadow-xl z-50 sticky top-0 md:h-screen transition-all">
+        <div class="p-4 md:p-6 border-b border-stone-800 flex justify-between items-center md:flex-col md:items-start md:text-left">
+            <div>
+                <h1 class="text-3xl md:text-5xl tracking-wide logo-font">
+                    VENA<span class="text-stone-400">.</span>
+                </h1>
+                <p class="text-[9px] md:text-[10px] text-stone-400 mt-1 md:mt-2 uppercase tracking-[0.15em] font-semibold">Dijital Dönüşüm Raporu</p>
+            </div>
+        </div>
+        
+        <!-- Yatay kaydırılabilir mobil menü -->
+        <nav class="flex flex-row md:flex-col md:flex-1 px-2 md:px-4 py-3 md:py-6 space-x-2 md:space-x-0 md:space-y-2 overflow-x-auto md:overflow-y-auto hide-scrollbar custom-scrollbar bg-[#1A1C1A]">
+            <button onclick="showTab('ozet', this)" class="sidebar-item active flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="compass" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">Manifesto & Özet</span>
+            </button>
+            <button onclick="showTab('kitle', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="users" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">Lokal Hedef Kitle</span>
+            </button>
+            <button onclick="showTab('webseo', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="globe" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">Web & Geo SEO</span>
+            </button>
+            <button onclick="showTab('strateji', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="sparkles" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">Marka & Otorite</span>
+            </button>
+            <button onclick="showTab('icerik', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="bot" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">AI Reels & Görsel</span>
+            </button>
+            <button onclick="showTab('takvim', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="map" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">30 Günlük Roadmap</span>
+            </button>
+            <button onclick="showTab('aksiyon', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="check-square" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">Aksiyon Planı</span>
+            </button>
+            <button onclick="showTab('teklif', this)" class="sidebar-item flex-shrink-0 w-auto md:w-full flex items-center space-x-2 md:space-x-3 px-3 py-2 md:px-4 md:py-3 rounded-lg transition-all text-stone-300 hover:bg-stone-800 hover:text-white">
+                <i data-lucide="briefcase" class="w-4 h-4 md:w-5 md:h-5"></i>
+                <span class="font-medium text-xs md:text-sm">Yatırım & Teklifler</span>
+            </button>
+        </nav>
+        
+        <!-- Corporate Footer (Desktop) -->
+        <div class="hidden md:block p-5 mt-auto border-t border-stone-800 text-center">
+            <div class="mb-2">
+                <span class="text-[10px] text-stone-400 uppercase tracking-[0.1em] block mb-1">Dijital Dönüşüm & Görsel İletişim Tasarımı Uzmanı</span>
+                <span class="text-sm text-stone-100 font-bold tracking-wider block mt-2">SEMANUR AYYILDIZ</span>
+            </div>
+            <p class="text-[9px] text-stone-500 leading-relaxed mt-3">
+                Bu strateji raporu VENA için özel tasarlanmıştır.<br/>
+                © 2026 Çankaya, Ankara.
+            </p>
+        </div>
+    </aside>
 
-## Prompt şablonu (kopyala–yapıştır)
+    <!-- Main Content -->
+    <main class="flex-1 p-4 md:p-10 overflow-y-auto w-full">
+        <header class="mb-6 md:mb-8 border-b border-stone-200 pb-4">
+            <h2 id="page-title" class="text-2xl md:text-3xl font-bold text-stone-800">Manifesto ve Marka Özeti</h2>
+            <p class="text-sm md:text-base text-stone-500 mt-2">Akış, Zarafet ve Denge. Ankara Çankaya'da yeni nesil butik kahve ve wellness deneyimi.</p>
+        </header>
 
-**Rol + hedef**
-“Profesyonel bir video editörü ve motion designer gibi davran. Aşağıdaki kaynaklardan 9:16 dikey Instagram Reels versiyonu üret.”
+        <!-- --- TAB: ÖZET --- -->
+        <div id="ozet" class="tab-content active space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                <h3 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
+                    <i data-lucide="leaf" class="vena-text mr-2 w-6 h-6"></i> Konumlandırma & Manifesto
+                </h3>
+                <p class="text-stone-600 leading-relaxed mb-4 text-justify">
+                    <strong>VENA</strong>, sıradan bir kafe değil; hayatın akışını kutlayan, Atakule'nin gölgesinde bir sığınaktır. Latince'de "damar" anlamına gelen adımızla şehrin ritmine can veriyoruz. Botanik tasarımımız, butik perakende yaklaşımımız (nadir kozmetik ve el yapımı takılar) ve "Wellness" odaklı menümüz (Elixir Lab & Mindful Mixology) ile ziyaretçilerimize bedensel ve ruhsal bir denge vadediyoruz.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100 border-l-4 border-l-[#2C352D]">
+                        <div class="vena-text font-bold text-lg mb-1">Lokal & Global (TR/EN)</div>
+                        <div class="text-stone-600 text-sm">Çankaya ve Atakule çevresindeki yerel halka ve expat/turist kitlesine yönelik çift dilli (TR/EN) iletişim stratejisi.</div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100 border-l-4 border-l-[#2C352D]">
+                        <div class="vena-text font-bold text-lg mb-1">Yeni Kanallar</div>
+                        <div class="text-stone-600 text-sm">Instagram (Ana etkileşim) ve Pinterest (Estetik, moodboard ve menü ilhamı) hesaplarının stratejik kurulumu.</div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100 border-l-4 border-l-[#2C352D]">
+                        <div class="vena-text font-bold text-lg mb-1">Menü Gücü</div>
+                        <div class="text-stone-600 text-sm">Sadece kahve değil; Coffee Negroni, Matcha, Detox içecekleri ile "Mindful Mixology" ve "Elixir Lab" vurgusu.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-**Girdiler (yüklediğin dosyaları isimleriyle referansla)**
+        <!-- --- TAB: KİTLE --- -->
+        <div id="kitle" class="tab-content grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-stone-100 vena-text rounded-full flex items-center justify-center mb-4"><i data-lucide="heart-pulse"></i></div>
+                <h3 class="text-xl font-bold text-stone-800 mb-3">Wellness Arayanlar</h3>
+                <div class="space-y-3 text-sm">
+                    <p><strong>Profil:</strong> <span class="text-stone-600">Kendine iyi bakmayı lüks değil rutin sayan, sağlıklı yaşama odaklı kitle.</span></p>
+                    <p><strong>Tüketim:</strong> <span class="text-stone-600">Elixir Lab (Green/Red Detox), Matcha serisi.</span></p>
+                    <p><strong>Tetikleyici (TR/EN):</strong> <span class="text-stone-600">"Nourish your soul" / "Ruhunu besle" temalı estetik görsel içerikler.</span></p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-stone-100 vena-text rounded-full flex items-center justify-center mb-4"><i data-lucide="camera"></i></div>
+                <h3 class="text-xl font-bold text-stone-800 mb-3">Butik & Estetik Kaşifler</h3>
+                <div class="space-y-3 text-sm">
+                    <p><strong>Profil:</strong> <span class="text-stone-600">Çankaya/Atakule çevresindeki expatlar, tasarımcılar ve ambiyans odaklı sosyalleşenler.</span></p>
+                    <p><strong>Tüketim:</strong> <span class="text-stone-600">Mindful Mixology (Coffee Negroni), Kozmetik ve Takı reyonu.</span></p>
+                    <p><strong>Tetikleyici (TR/EN):</strong> <span class="text-stone-600">Pinterest tarzı botanik dekorasyon ve lifestyle reels videoları.</span></p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-stone-100 vena-text rounded-full flex items-center justify-center mb-4"><i data-lucide="coffee"></i></div>
+                <h3 class="text-xl font-bold text-stone-800 mb-3">Nitelikli Kahve Tutkunları</h3>
+                <div class="space-y-3 text-sm">
+                    <p><strong>Profil:</strong> <span class="text-stone-600">Kahveyi bir ritüel olarak gören, çekirdeğin hikayesini ve demleme ustalarını önemseyenler.</span></p>
+                    <p><strong>Tüketim:</strong> <span class="text-stone-600">V60, Flat White, Cortado.</span></p>
+                    <p><strong>Tetikleyici (TR/EN):</strong> <span class="text-stone-600">Kahve kavurma ve baristaların ustalık anlarını gösteren ASMR videolar.</span></p>
+                </div>
+            </div>
+        </div>
 
-* Kaynak video: `SOURCE_HORIZONTAL.mp4` (yatay, ana montaj bu)
-* Kurumsal logo (birebir kullanılacak): `LOGO.png` (şeffaf PNG / SVG)
-* Kurumsal görseller/overlayler (birebir): `BRAND_VISUALS.zip` veya tek tek: `overlay1.png`, `frame.png`, `cta.png`
-* (Varsa) Brand guideline: `brand_guide.pdf`
+        <!-- --- TAB: WEB & GEO SEO --- -->
+        <div id="webseo" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                <h3 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
+                    <i data-lucide="map-pin" class="vena-text mr-2 w-6 h-6"></i> Çankaya Özelinde Lokal Web & Geo SEO
+                </h3>
+                <p class="text-stone-600 text-sm mb-6">
+                    Web sitesi sadece bir menü değil, Google'da Atakule ve Çankaya aramalarında VENA'yı zirveye taşıyacak teknik bir araçtır. 
+                    <strong>JSON-LD (Linked Data) Schema Markup</strong> kullanılarak arama motorlarına mekanın tam yapısı iletilecektir.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- JSON-LD Example -->
+                    <div class="bg-[#1e1e1e] p-4 rounded-lg overflow-x-auto relative">
+                        <span class="absolute top-2 right-3 text-xs text-stone-400">JSON-LD Schema</span>
+                        <pre class="text-[#d4d4d4] text-xs font-mono mt-4"><code>{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "VENA Espresso Bar",
+  "image": "https://vena.com.tr/botanic-interior.jpg",
+  "@id": "https://vena.com.tr",
+  "url": "https://vena.com.tr",
+  "telephone": "+90...",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Atakule Çevresi...",
+    "addressLocality": "Çankaya",
+    "addressRegion": "Ankara",
+    "postalCode": "06690",
+    "addressCountry": "TR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 39.8865,
+    "longitude": 32.8550
+  },
+  "servesCuisine": ["Coffee", "Mocktails", "Healthy"]
+}</code></pre>
+                    </div>
 
-**Çıktı gereksinimleri**
+                    <div class="space-y-4">
+                        <div class="border-l-2 border-[#2C352D] pl-4">
+                            <h4 class="font-bold text-stone-800 text-sm">Bilingual (Çift Dilli) Mimari</h4>
+                            <p class="text-xs text-stone-600 mt-1">Sitede `hreflang` etiketleriyle TR ve EN versiyonlar entegre edilecek. "Best coffee near Atakule" veya "Çankaya butik kafe" aramalarında iki kitle de yakalanacak.</p>
+                        </div>
+                        <div class="border-l-2 border-[#2C352D] pl-4">
+                            <h4 class="font-bold text-stone-800 text-sm">Hızlı Yüklenme (Core Web Vitals)</h4>
+                            <p class="text-xs text-stone-600 mt-1">Mobil öncelikli, görsellerin WebP formatında sunulduğu, animasyonların akıcı olduğu modern UI/UX tasarımı.</p>
+                        </div>
+                        <div class="border-l-2 border-[#2C352D] pl-4">
+                            <h4 class="font-bold text-stone-800 text-sm">Google Business Entegrasyonu</h4>
+                            <p class="text-xs text-stone-600 mt-1">Web sitesindeki menü, yorumlar ve blog içerikleri doğrudan Google Haritalar profilini besleyecek şekilde yapılandırılacak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-* Format: **9:16 (1080x1920)**, MP4 (H.264), 30 fps, yüksek kalite
-* Süre: Kaynak videoyla aynı (ya da şu aralık: **-** sn)
-* **Ses**: Orijinal sesi aynen koru (müzik/konuşma senkronu bozulmasın)
+        <!-- --- TAB: STRATEJİ --- -->
+        <div id="strateji" class="tab-content space-y-6">
+            <h3 class="text-xl font-bold text-slate-800">4 Temel Otorite ve İçerik Direği</h3>
+            <p class="text-slate-500 mb-6">Sosyal medya ve web içerikleri bu 4 sütun etrafında şekillenecektir.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-100 flex items-start space-x-4">
+                    <div class="vena-text bg-stone-50 p-3 rounded-lg"><i data-lucide="flower-2"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Botanik ve Mimari Denge</h4>
+                        <p class="text-sm text-stone-600 mt-1">Ahşap ve beyazın uyumu, mekanın bitki örtüsü. Şehirden kaçış hissi. <em>(Pinterest & IG Grid hedefli)</em></p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-100 flex items-start space-x-4">
+                    <div class="vena-text bg-stone-50 p-3 rounded-lg"><i data-lucide="wine"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Mindful Mixology & Espresso</h4>
+                        <p class="text-sm text-stone-600 mt-1">Coffee Negroni, Gin Bull yapım süreçleri. Klasik espresso ritüelleri. Kokteyl estetiği ve kahve uzmanlığı.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-100 flex items-start space-x-4">
+                    <div class="vena-text bg-stone-50 p-3 rounded-lg"><i data-lucide="sun"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Wellness & Elixir Lab</h4>
+                        <p class="text-sm text-stone-600 mt-1">Matcha hazırlama seremonileri, Detox içeceklerinin sağlığa faydaları. Beden ve ruh dengesi vurgusu.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-100 flex items-start space-x-4">
+                    <div class="vena-text bg-stone-50 p-3 rounded-lg"><i data-lucide="gem"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Butik Deneyim (Retail)</h4>
+                        <p class="text-sm text-stone-600 mt-1">Özel tasarım takılar ve nadir kozmetik ürünlerinin hikayeleri. "Sadece kahve içmiyoruz, tarzımızı yansıtıyoruz."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-**Dönüşüm kuralları (kritik)**
+        <!-- --- TAB: İÇERİK --- -->
+        <div id="icerik" class="tab-content">
+            <div class="mb-6 vena-bg text-white p-5 rounded-xl flex flex-col md:flex-row items-center justify-between shadow-md">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="font-bold text-xl">AI & Görsel İletişim Kurguları</h3>
+                    <p class="text-sm text-stone-300 mt-1">Yapay zeka destekli geçişler ve üst düzey sinematografi ile VENA algısı yaratılacak.</p>
+                </div>
+                <div class="flex space-x-3">
+                    <span class="bg-white/20 px-3 py-1 rounded text-sm font-semibold backdrop-blur-sm">Instagram</span>
+                    <span class="bg-white/20 px-3 py-1 rounded text-sm font-semibold backdrop-blur-sm">Pinterest</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-stone-100 vena-text rounded uppercase tracking-wider">AI Destekli Reels</span>
+                        <span class="text-xs text-stone-400">#VisualArt</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-stone-800 mt-1">Atakule'den Vena'ya Botanik Akış</h4>
+                    <p class="text-stone-600 text-sm mt-2"><strong>Konsept:</strong> Video Atakule'nin dışarıdan görüntüsüyle başlar, AI zoom efektiyle pencereden VENA'nın içine süzülür ve mekanın içindeki sarmaşıklar/çiçekler sihirli bir şekilde büyüyerek izleyiciyi karşılar.</p>
+                    <p class="text-xs text-stone-500 mt-3 font-mono">EN: "Step into Ankara's hidden sanctuary."<br>TR: "Şehrin kalbinde gizli bir vaha."</p>
+                </div>
 
-1. **Auto-reframe / yeniden kadraj**:
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-stone-100 vena-text rounded uppercase tracking-wider">Sinematik ASMR</span>
+                        <span class="text-xs text-stone-400">#Mixology</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-stone-800 mt-1">Coffee Negroni Ritüeli</h4>
+                    <p class="text-stone-600 text-sm mt-2"><strong>Konsept:</strong> Işık oyunlarıyla bar kısmı öne çıkarılır. Buzun bardağa düşüşü, kahvenin yavaşça süzülmesi makro lens ile çekilir. Sadece ortam ve likit sesleri (ASMR).</p>
+                    <p class="text-xs text-stone-500 mt-3 font-mono">EN: "Not just coffee. A mindful mixology."<br>TR: "Sadece kahve değil. Akışın ta kendisi."</p>
+                </div>
 
-   * Ana kişi/ürün her zaman merkezde veya “rule of thirds”e uygun olsun.
-   * Yüz/ürün kadrajdan taşmasın, önemli hareketlerde kadrajı “track” ederek takip et.
-   * Yatay videodaki metin/ekran görüntüsü varsa: okunabilir kalacak şekilde **akıllı kırpma + gerektiğinde ölçekleme + arka plan doldurma (blur/extend)** uygula. Metin asla kesilmesin.
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-stone-100 vena-text rounded uppercase tracking-wider">Pinterest Moodboard</span>
+                        <span class="text-xs text-stone-400">#Aesthetic</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-stone-800 mt-1">Ahşap, Beyaz ve Matcha</h4>
+                    <p class="text-stone-600 text-sm mt-2"><strong>Konsept:</strong> Vena'nın seramik fincanlarında sunulan yemyeşil Matcha'nın, ahşap masa ve arka plandaki minimal takı stantları ile kompozisyonu. Yüksek kaliteli fotoğraflar.</p>
+                    <p class="text-xs text-stone-500 mt-3 font-mono">"Find your balance." | #AnkaraCafe #MatchaLovers</p>
+                </div>
 
-2. **Logo ve kurumsal görseller birebir**:
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-stone-100 vena-text rounded uppercase tracking-wider">Lifestyle / UGC</span>
+                        <span class="text-xs text-stone-400">#Community</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-stone-800 mt-1">VENA'da Bir Gün</h4>
+                    <p class="text-stone-600 text-sm mt-2"><strong>Konsept:</strong> Şık giyimli bir misafirin kapıdan girişi, bilgisayarında çalışırken Flat White yudumlaması, çıkarken butik takıları incelemesi. Hızlı ve ritmik kesimler.</p>
+                    <p class="text-xs text-stone-500 mt-3 font-mono">EN: "Your daily ritual in Çankaya."<br>TR: "Çankaya'daki günlük ritüeliniz."</p>
+                </div>
+            </div>
+        </div>
 
-   * `LOGO.png` dosyasını **yeniden üretme, stilize etme, renk değiştirme, bozmadan** kullan.
-   * Logo en-boy oranı korunarak ölçeklensin; sıkıştırma/esnetme yok.
-   * Logoya **clear space** bırak (en az logo yüksekliğinin %10’u kadar).
-   * Yerleşim: sağ alt (veya: ____)
-   * Opaklık: %100 (veya: ____)
-   * Süre: Videonun tamamında (veya: ilk/son __ sn)
+        <!-- --- TAB: TAKVİM (30 DAY ROADMAP) --- -->
+        <div id="takvim" class="tab-content">
+            <h3 class="text-xl font-bold text-stone-800 mb-2">30 Günlük Dijital Lansman Roadmap</h3>
+            <p class="text-sm text-stone-500 mb-6">İngilizce/Türkçe çift dilli, AI destekli ve lokal Çankaya odaklı içerik akışı.</p>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                <div class="overflow-x-auto max-h-[600px] custom-scrollbar">
+                    <table class="w-full text-left border-collapse relative">
+                        <thead class="sticky top-0 bg-stone-100 z-10 shadow-sm">
+                            <tr class="text-stone-600 text-xs uppercase tracking-wider">
+                                <th class="p-3 font-bold">Gün</th>
+                                <th class="p-3 font-bold">Platform & Format</th>
+                                <th class="p-3 font-bold">İçerik Stratejisi & Başlık</th>
+                                <th class="p-3 font-bold w-1/4">Odak (Pillar)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roadmap-body" class="text-stone-700 text-sm">
+                            <!-- JS injected 30 days -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-3. **Kurumsal görsel kullanım kuralları**:
+        <!-- --- TAB: AKSİYON --- -->
+        <div id="aksiyon" class="tab-content max-w-4xl">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold text-stone-800">Teknik & Görsel Aksiyon Planı</h3>
+                    <span class="bg-[#2C352D] text-white text-xs px-3 py-1 rounded-full">Semanur Ayyıldız</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-stone-700 mb-3 border-b pb-2 flex items-center"><i data-lucide="code" class="w-4 h-4 mr-2"></i> Dijital & Web Altyapısı</h4>
+                        <div id="checklist-web" class="space-y-3">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-stone-700 mb-3 border-b pb-2 flex items-center"><i data-lucide="instagram" class="w-4 h-4 mr-2"></i> Sosyal Medya & İçerik</h4>
+                        <div id="checklist-social" class="space-y-3">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+                </div>
 
-   * `overlay*.png` / `frame.png` gibi görselleri **aynen** yerleştir; renk/kontrast/efekt ekleme.
-   * Eğer çakışma olursa, videoyu değil overlayi değil: **kadrajı** ayarla.
+                <div class="mt-8 pt-6 border-t border-stone-100">
+                    <a href="#" class="w-full bg-[#2C352D] hover:bg-[#1A1C1A] text-white font-bold py-4 px-4 rounded-lg transition-all flex items-center justify-center text-center shadow-lg hover:shadow-xl">
+                        <i data-lucide="rocket" class="mr-2"></i> Sistemi Kur ve Roadmap'i Başlat
+                    </a>
+                </div>
+            </div>
+        </div>
 
-4. **Güvenli alan (IG UI çakışması)**:
+        <!-- --- TAB: TEKLİF --- -->
+        <div id="teklif" class="tab-content max-w-5xl">
+            <h3 class="text-xl font-bold text-stone-800 mb-2">Dijital Partnerlik & Yatırım Planı</h3>
+            <p class="text-sm text-stone-500 mb-8">VENA'nın hedeflerine ulaşması için optimize edilmiş, çekimlerin marka tarafından sağlandığı yönetim ve web geliştirme teklifleri. (Tüm fiyatlara KDV eklenecektir.)</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start mt-8">
+                
+                <!-- Paket 1 -->
+                <div class="bg-[#2C352D] rounded-2xl p-6 border border-[#2C352D] shadow-xl relative transform md:-translate-y-4 transition-transform hover:-translate-y-6">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-[#2C352D] text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md whitespace-nowrap">Lansman & Kurulum</div>
+                    <h4 class="text-white font-bold text-lg">İlk 2 Ay: Büyüme</h4>
+                    <p class="text-stone-300 text-xs mt-1 mb-4 h-8">30 günlük roadmap'in uygulanması ve tüm dijital kanalların inşası.</p>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-white">35.000 ₺</span>
+                        <span class="text-xs text-stone-400 font-medium">/ay + KDV</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-stone-200 mb-8 border-t border-stone-700 pt-4">
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-stone-300 mr-2 mt-0.5"></i> Instagram & Pinterest Kurulumu</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-stone-300 mr-2 mt-0.5"></i> Ayda 20+ İçerik (Post/Reels) Kurgusu</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-stone-300 mr-2 mt-0.5"></i> AI Destekli Video Edit & Revizyonlar</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-stone-300 mr-2 mt-0.5"></i> Çift Dilli (TR/EN) İçerik Yönetimi</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-stone-300 mr-2 mt-0.5"></i> Gelen Görsellerle Özgün Tasarımlar</li>
+                        <li class="flex items-start text-stone-400"><i data-lucide="info" class="w-4 h-4 mr-2 mt-0.5"></i> <span class="text-xs italic">Çekim dahil değildir.</span></li>
+                    </ul>
+                </div>
 
-   * Alt kısımda Reels arayüzü için metin/logo kritik öğeleri alt kenardan en az **250 px** yukarıda tut.
-   * Sağ tarafta ikonlar için en az **120 px** içeride kal.
+                <!-- Paket 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm relative transition-transform hover:-translate-y-1">
+                    <h4 class="text-stone-800 font-bold text-lg">3. Ay ve Sonrası</h4>
+                    <p class="text-xs text-stone-500 mt-1 mb-4 h-8">Sistemin oturmasıyla başlayan düzenli sürdürülebilirlik evresi.</p>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-stone-800">30.000 ₺</span>
+                        <span class="text-xs text-stone-500 font-medium">/ay + KDV</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-stone-600 mb-8 border-t border-stone-100 pt-4">
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-[#2C352D] mr-2 mt-0.5"></i> Aylık Düzenli İçerik Yönetimi</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-[#2C352D] mr-2 mt-0.5"></i> Günlük Story & Topluluk Etkileşimi</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-[#2C352D] mr-2 mt-0.5"></i> Aylık Performans Raporlaması</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-[#2C352D] mr-2 mt-0.5"></i> Reklam (Meta Ads) Yönetimi</li>
+                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-[#2C352D] mr-2 mt-0.5"></i> Kampanya & Menü Odaklı Strateji</li>
+                        <li class="flex items-start text-stone-400"><i data-lucide="info" class="w-4 h-4 mr-2 mt-0.5"></i> <span class="text-xs italic">Çekim dahil değildir.</span></li>
+                    </ul>
+                </div>
 
-5. **Alt yazı (opsiyonel ama önerilir)**:
+                <!-- Paket 3 -->
+                <div class="bg-stone-50 rounded-2xl p-6 border-2 border-[#2C352D] border-opacity-20 shadow-sm relative transition-transform hover:-translate-y-1">
+                    <div class="absolute top-0 right-4 transform -translate-y-1/2 bg-[#2C352D] text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-wider">Tek Seferlik</div>
+                    <h4 class="text-stone-800 font-bold text-lg">Web Sitesi Altyapısı</h4>
+                    <p class="text-xs text-stone-500 mt-1 mb-4 h-8">Lokal SEO uyumlu, çift dilli ve estetik web arayüzü tasarımı.</p>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold text-stone-800">25.000 ₺</span>
+                        <span class="text-xs text-stone-500 font-medium">+ KDV</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-stone-600 mb-8 border-t border-stone-200 pt-4">
+                        <li class="flex items-start"><i data-lucide="code" class="w-4 h-4 text-stone-500 mr-2 mt-0.5"></i> TR/EN Çift Dilli Mimari</li>
+                        <li class="flex items-start"><i data-lucide="map-pin" class="w-4 h-4 text-stone-500 mr-2 mt-0.5"></i> Çankaya/Atakule Geo-SEO Uyumu</li>
+                        <li class="flex items-start"><i data-lucide="search" class="w-4 h-4 text-stone-500 mr-2 mt-0.5"></i> JSON-LD LocalBusiness Şeması</li>
+                        <li class="flex items-start"><i data-lucide="smartphone" class="w-4 h-4 text-stone-500 mr-2 mt-0.5"></i> %100 Mobil Uyumlu Hızlı Tasarım</li>
+                        <li class="flex items-start"><i data-lucide="coffee" class="w-4 h-4 text-stone-500 mr-2 mt-0.5"></i> İnteraktif Menü (Elixir, Mixology)</li>
+                        <li class="flex items-start"><i data-lucide="server" class="w-4 h-4 text-stone-500 mr-2 mt-0.5"></i> 1 Yıllık Hosting & Domain Kurulumu</li>
+                    </ul>
+                </div>
 
-   * Konuşma varsa otomatik altyazı çıkar.
-   * Stil: kurumsal font varsa kullan; yoksa sade, okunaklı sans-serif.
-   * Altyazı logoyu kapatmasın.
+            </div>
+        </div>
 
-**Teslim**
+        <!-- Corporate Footer (Mobile) -->
+        <div class="md:hidden mt-12 pt-6 border-t border-stone-200 text-center pb-8">
+            <div class="mb-2">
+                <span class="text-[10px] text-stone-400 uppercase tracking-[0.1em] block mb-1">Stratejik Partner</span>
+                <span class="text-sm text-stone-700 font-bold tracking-wider block mt-1">SEMANUR AYYILDIZ</span>
+            </div>
+            <p class="text-[9px] text-stone-500 leading-relaxed mt-2">
+                © 2026 Çankaya, Ankara. Tüm hakları saklıdır.
+            </p>
+        </div>
 
-* 1 adet final render + 1 adet alternatif kadraj (daha yakın / daha geniş) üret.
-* Uyguladığın kadraj stratejisini 3 maddeyle özetle.
+    </main>
+</div>
 
----
+<script>
+    lucide.createIcons();
 
-## Kısa “tek cümle” versiyon (hızlı deneme için)
+    const titles = {
+        ozet: "Manifesto ve Marka Özeti",
+        kitle: "Lokal ve Global Hedef Kitle",
+        webseo: "Web Mimarisi & Geo SEO Stratejisi",
+        strateji: "Marka Otoritesi ve İçerik Direkleri",
+        icerik: "AI Destekli Reels ve Görsel Dil",
+        takvim: "30 Günlük Lansman ve Büyüme Roadmap",
+        aksiyon: "Teknik ve Görsel Aksiyon Planı",
+        teklif: "Aylık Yatırım ve Teklif Planları"
+    };
 
-“`SOURCE_HORIZONTAL.mp4` videosunu 9:16 1080x1920 Reels’e çevir; ana kişi/ürünü takip ederek akıllı yeniden kadraj yap; metin kesilmesin (gerekirse blur/extend background); `LOGO.png` ve verdiğim overlay görsellerini **aynen** (renk/efekt/deformasyon olmadan) yerleştir; IG güvenli alanlarına uy; MP4 H.264 olarak export et.”
+    function showTab(tabId, element) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('page-title').innerText = titles[tabId];
+        if (window.innerWidth < 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
----
+    // 30 Days Roadmap Data Generation
+    const roadmapData = [
+        { day: 1, format: "IG/Pinterest", title: "Manifesto Duyurusu: Akış, Zarafet, Denge (TR/EN Fotoğraf)", pillar: "Marka Kimliği" },
+        { day: 2, format: "IG Reels (AI)", title: "AI Efektli Mekan Tanıtımı (Dışarıdan İçeriye Botanik Akış)", pillar: "Botanik & Estetik" },
+        { day: 3, format: "Web/Google", title: "Google My Business Kaydı & Web Sitesi Yayın (JSON-LD Aktif)", pillar: "Lokal SEO" },
+        { day: 4, format: "IG Story", title: "Atakule Çevresine Hoş Geldiniz! Vena'nın Kapıları Açıldı.", pillar: "Lokal Bağ" },
+        { day: 5, format: "IG Reels", title: "Mindful Mixology: Coffee Negroni ASMR Yapımı", pillar: "Menü (Mixology)" },
+        { day: 6, format: "Pinterest", title: "Mekan Detayları Moodboard'u (Ahşap, Çiçekler, Işık)", pillar: "Estetik İlham" },
+        { day: 7, format: "IG Carousel", title: "Butik Köşemiz: El Yapımı Takılarımızla Tanışın (Bilingual)", pillar: "Butik (Retail)" },
+        { day: 8, format: "IG Reels", title: "Elixir Lab: Matcha Hazırlama Seremonisi (Huzur/Denge)", pillar: "Wellness" },
+        { day: 9, format: "IG Story", title: "Anket: Bugün modun ne? (Green Detox mu Espresso mu?)", pillar: "Etkileşim" },
+        { day: 10, format: "IG Reels", title: "Günün Ritüeli: Espresso Bar'da Flat White Akışı", pillar: "Kahve Uzmanlığı" },
+        { day: 11, format: "Web Blog", title: "SEO İçerik: 'Çankaya'nın En İyi Yeni Nesil Kafesi' Yayını", pillar: "Geo SEO" },
+        { day: 12, format: "IG Carousel", title: "Şehrin Karmaşasından Kaçış: Vena'nın Botanik Tasarımı", pillar: "Botanik & Estetik" },
+        { day: 13, format: "Pinterest", title: "Sağlıklı Yaşam Panosu: Red/Orange Detox İçecekleri", pillar: "Wellness" },
+        { day: 14, format: "IG Reels (AI)", title: "AI Görsel Stiliyle Menü Geçişleri (Büyüleyici Edit)", pillar: "Menü Tanıtımı" },
+        { day: 15, format: "IG Reels", title: "Sıcak Ritüeller: Chai Tea Latte & London Fog (Cozy Vibe)", pillar: "Menü (Warm)" },
+        { day: 16, format: "IG Story", title: "Expat'lara Özel Mesaj: We speak English, serve great coffee!", pillar: "Global Kitle" },
+        { day: 17, format: "IG Carousel", title: "Nadir Kozmetiklerimiz: Kendinize İyi Bakın", pillar: "Butik (Retail)" },
+        { day: 18, format: "IG Reels", title: "Barista Gözünden: V60 Demleme İncelikleri", pillar: "Kahve Uzmanlığı" },
+        { day: 19, format: "Web/Google", title: "Google Maps Yorum Kampanyası (Mağaza İçi QR Başlangıcı)", pillar: "Lokal SEO" },
+        { day: 20, format: "IG Story", title: "Hafta Sonu Modu: Atakule Manzarası & Vena", pillar: "Lokal Bağ" },
+        { day: 21, format: "Pinterest", title: "Kahve ve Çalışma Alanı İlhamları (Freelancer Hedefi)", pillar: "Yaşam Tarzı" },
+        { day: 22, format: "IG Reels", title: "Mocktail Saati: Gin Bull & Gin Tonik (Alcohol Free Vibe)", pillar: "Menü (Mixology)" },
+        { day: 23, format: "IG Carousel", title: "Denge Menüsü: Salep & Türk Kahvesi Gelenekleri", pillar: "Menü (Warm)" },
+        { day: 24, format: "IG Story", title: "Bugün Hangi Tatlı/Kahve Eşleşmesi? (Soru/Cevap)", pillar: "Etkileşim" },
+        { day: 25, format: "IG Reels (UGC)", title: "Müşterilerimizin Gözünden VENA (Kullanıcı Videoları Derlemesi)", pillar: "Topluluk" },
+        { day: 26, format: "Pinterest", title: "Butik Takı Kombinleri & Kahve Fincanı Estetiği", pillar: "Butik (Retail)" },
+        { day: 27, format: "IG Reels", title: "Detox Günleri: Neden Elixir Lab İçmelisiniz? (TR/EN)", pillar: "Wellness" },
+        { day: 28, format: "Web Blog", title: "SEO İçerik: 'Mindful Mixology Nedir?'", pillar: "Geo SEO" },
+        { day: 29, format: "IG Carousel", title: "1. Ayımızı Kutluyoruz! Akışın Bir Parçası Olduğunuz İçin Teşekkürler.", pillar: "Marka Kimliği" },
+        { day: 30, format: "IG Reels (AI)", title: "Vena'nın 4 Hali: Sabah, Öğle, Akşamüstü, Gece (Zaman Atlamalı)", pillar: "Botanik & Estetik" }
+    ];
 
-## Örnek revize komutları (çıktı geldikten sonra)
+    const roadmapBody = document.getElementById('roadmap-body');
+    roadmapData.forEach(row => {
+        const tr = document.createElement('tr');
+        // Add subtle background to AI and Web items for distinction
+        let bgClass = "border-b border-stone-100 hover:bg-stone-50 transition-colors";
+        if (row.format.includes('AI')) bgClass += " bg-[#f0fdf4]"; // light green for AI
+        if (row.format.includes('Web')) bgClass += " bg-[#f8fafc]"; // light blue for Web/SEO
+        
+        tr.className = bgClass;
+        tr.innerHTML = `
+            <td class="p-3 whitespace-nowrap font-bold text-stone-800 text-center">Gün ${row.day}</td>
+            <td class="p-3"><span class="bg-white border border-stone-200 text-stone-600 px-2 py-1 rounded text-[11px] font-bold shadow-sm">${row.format}</span></td>
+            <td class="p-3 font-medium text-stone-700">${row.title}</td>
+            <td class="p-3 text-[11px] font-semibold text-[#2C352D] uppercase tracking-tighter">${row.pillar}</td>
+        `;
+        roadmapBody.appendChild(tr);
+    });
 
-* “Kadraj daha yakın olsun, yüz/ürün ekranda %15 daha büyük görünsün; metinler yine kesilmesin.”
-* “Logo sağ alttan sol üste alınsın; clear space korunsun; opaklık %100 kalsın.”
-* “Alt yazıları 2 satırı geçmeyecek şekilde kısalt, satır kırılımlarını daha dengeli yap.”
+    // Checklists Data
+    const checklistWebData = [
+        "Vena.com.tr domain yönlendirmesi ve SSL sertifikası kurulumu.",
+        "JSON-LD Schema Markup kodlarının (LocalBusiness, Cafe) siteye gömülmesi.",
+        "Web sitesinde TR / EN dil yapısının (hreflang) kurgulanması.",
+        "Menü PDF'inin interaktif web formatına (Elixir Lab, Warm Rituals vb.) dönüştürülmesi.",
+        "Google My Business (Haritalar) kaydının Çankaya/Atakule olarak pinlenmesi."
+    ];
 
----
+    const checklistSocialData = [
+        "Instagram ve Pinterest hesaplarının kurumsal (business) olarak açılması.",
+        "Bilingual (TR/EN) Bio yazımı, öne çıkanların (Highlights) tasarımı.",
+        "Mekan içi ilk AI destekli Reels çekimleri için prodüksiyon hazırlığı.",
+        "30 günlük içerik takvimindeki metinlerin Türkçe ve İngilizce hazırlanması.",
+        "Kozmetik ve takı butik ürünleri için ürün fotoğrafçılığı (Pinterest uyumlu)."
+    ];
 
-## Mini kontrol listesi (Gemini’ye yazmadan önce)
+    function createChecklist(containerId, data) {
+        const container = document.getElementById(containerId);
+        data.forEach((text) => {
+            const div = document.createElement('div');
+            div.className = "flex items-start p-3 rounded-lg border border-stone-200 bg-stone-50 hover:bg-white cursor-pointer transition-colors shadow-sm";
+            div.onclick = function() {
+                const circle = this.querySelector('.check-circle');
+                const span = this.querySelector('.check-text');
+                circle.classList.toggle('bg-[#2C352D]');
+                circle.classList.toggle('border-[#2C352D]');
+                circle.classList.toggle('bg-white');
+                span.classList.toggle('line-through');
+                span.classList.toggle('opacity-50');
+            };
+            div.innerHTML = `
+                <div class="check-circle mt-0.5 w-5 h-5 flex-shrink-0 rounded border border-stone-300 bg-white flex items-center justify-center mr-3 transition-colors">
+                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                </div>
+                <span class="check-text text-stone-700 select-none text-xs leading-relaxed">${text}</span>
+            `;
+            container.appendChild(div);
+        });
+    }
 
-* Logo dosyan **şeffaf PNG/SVG** mi? (beyaz zeminli logo istemeden “birebir” bozulabilir)
-* Brand overlay görsellerinin çözünürlüğü **1080x1920**’e uygun mu?
-* Videoda yatay ekrana gömülü metin var mı? (sunum, ekran kaydı vb.) Varsa “metin kesilmesin” kısmı şart.
+    createChecklist('checklist-web', checklistWebData);
+    createChecklist('checklist-social', checklistSocialData);
 
-İstersen yatay videoda **odaklanması gereken şey** (kişi mi, ürün mü, mekan mı) ve **logonun nereye** konmasını istediğini söyle; ben şablonu senin senaryona göre tamamen doldurup “tek seferde çalışan” nihai prompt’a çevireyim.
+</script>
+
+</body>
+</html>
